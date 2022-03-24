@@ -14,7 +14,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
                         </span>
                     </div>
                 </a>
@@ -80,7 +80,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: gray;"></i>
+                        <i class="fa fa-user" style="color: gray;"></i>
                         <span class="nav-link-text" style="color: gray;">{{ __('Usuarios') }}</span>
                     </a>
 
@@ -105,17 +105,33 @@
                         <span class="nav-link-text" style="color: gray;">{{ __('Eventos') }}</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('eventos.index') }}">
-                        <i class="fa fa-calendar" style="color: gray;"></i>
-                        <span class="nav-link-text" style="color: gray;">{{ __('Noticias') }}</span>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('bannersevent.index') }}">
+                        <i class="fa fa-cog" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Banner de eventos') }}</span>
                     </a>
-                </li> -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('bannershome.index') }}">
+                        <i class="fa fa-home" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Banner de inicio') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('announcer.index') }}">
+                        <i class="fa fa-microphone" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Locutores') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('radio.index') }}">
+                        <i class="fa fa-podcast" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Emisoras') }}</span>
+                    </a>
+                </li>
 
             </ul>
-          
+
         </div>
     </div>
 </nav>
-
-

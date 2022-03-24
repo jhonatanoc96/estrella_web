@@ -22,11 +22,12 @@
                         </div>
                         @endif
                         <div class="col-8">
-                            <h3 class="mb-0">Eventos</h3>
+                            <h3 class="mb-0">Locutores</h3>
                             <!-- <image src="{{asset('/storage/events/img/6203c745c525310a60478135/16444147900_.jpg')}}"> -->
                         </div>
-                        <div class="col-4 text-right">
-                            <a href="{{route('eventos.create')}}" class="btn btn-sm btn-primary">Agregar evento</a>
+                        <div class="col-4">
+                            <a href="{{route('announcer.create')}}" class="btn btn-sm btn-primary">Agregar locutor</a>
+                            <!-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">Agregar emisora</button> -->
                         </div>
                     </div>
                 </div>
@@ -38,8 +39,9 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripción</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Audio</th>
+                                <th scope="col">Nombre completo</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Fecha de creación</th>
                                 <th scope="col"></th>
@@ -69,7 +71,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">IMÁGENES</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">CREAR LCOTUOR</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -77,28 +79,15 @@
                 <div class="modal-body">
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Imagen</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="records_images_table">
 
-                            </tbody>
-                        </table>
-                        <!-- <img src="{{ storage_path('app/events/img/6203c745c525310a60478135/16444147900_.jpg') }}" style="width: 100%; height: 100%;"> -->
+                        <label class="form-control-label" for="emisora">{{ __('Emisora') }}</label>
+                        <input type="text" name="emisora" id="emisora" class="form-control" placeholder="{{ __('Emisora') }}" required autofocus>
+                        <br>
+
+                        <div class="text-center">
+                            <button id="guardarCreateEmisora" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
+                        </div>
                     </div>
-
-                    <form id="formAddPhoto" method="POST" action="{{ url('/create-image-bannerevent')}}" enctype="multipart/form-data">
-                        @csrf
-                        <input id="addPhoto" type="file" name="newPhoto">Agregar imagen</input>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -112,7 +101,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/eventos/index.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/announcer/index.js') }}"></script>
 
 <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

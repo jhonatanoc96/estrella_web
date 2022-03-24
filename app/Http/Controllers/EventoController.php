@@ -24,7 +24,7 @@ class EventoController extends Controller
 
     public function edit($id, Request $request)
     {
-        $url = "http://3.16.246.24:3010/api/event/" . $id;
+        $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/event/" . $id;
 
         $client = new Client();
 
@@ -40,6 +40,8 @@ class EventoController extends Controller
 
         $response_code = $r->getStatusCode();
         $response = json_decode((string) $r->getBody(), true);
+
+        $response['Message ']['new_url_image'] = "";
 
         // dd($response["Message "]);
 
@@ -81,7 +83,7 @@ class EventoController extends Controller
             // ]);
         }
 
-        $url = "http://3.16.246.24:3010/api/event/" . $_id;
+        $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/event/" . $_id;
 
         $client = new Client();
 
@@ -118,7 +120,6 @@ class EventoController extends Controller
 
         $days = explode(",", $daysString);
         $images = explode(",", $imagesString);
-        // dd($items);
 
         if ($file = $request->file('mainPhoto')) {
 
@@ -136,10 +137,12 @@ class EventoController extends Controller
                 "start_time" => $start_time,
                 "state" => $state,
                 "update_date" => $update_date,
-                "url_image" => "storage/" . $path . $name,
+                "url_image" => $url_image,
+                "new_url_image" => "storage/" . $path . $name,
                 "_id" => $_id_event,
             );
             json_encode($items);
+            // dd($items);
 
             return view('eventos.edit')->with('response', $items);
 
@@ -149,13 +152,30 @@ class EventoController extends Controller
             //     "success" => true,
             //     "file" => "array"
             // ]);
+        } else {
+            $items = array(
+                "creation_date" => $creation_date,
+                "days" => $days,
+                "description" => $description,
+                "end_time" => $end_time,
+                "images" => $images,
+                "name" => $nameEvent,
+                "start_time" => $start_time,
+                "state" => $state,
+                "update_date" => $update_date,
+                "url_image" => $url_image,
+                "new_url_image" => "",
+                "_id" => $_id_event,
+            );
+            json_encode($items);
+            // dd($items);
+
+            return view('eventos.edit')->with('response', $items);
         }
     }
 
     public function updateEvent(Request $request)
     {
-
-        dd($request->input('creation_date'));
 
         $creation_date = $request->input('creation_date');
         $daysString = $request->input('days');
@@ -171,39 +191,65 @@ class EventoController extends Controller
 
         $days = explode(",", $daysString);
         $images = explode(",", $imagesString);
-        // dd($items);
 
-        if ($file = $request->file('mainPhoto')) {
+        $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/event/" . $_id_event;
 
-            $path = 'events/img/' . $_id_event . '/';
-            $name = time() . '_.' . $file->getClientOriginalExtension();
-            $file->storeAs($path, $name);
+        $client = new Client();
 
-            $items = array(
-                "creation_date" => $creation_date,
+        $r = $client->request('PUT', $url, [
+            'headers' => ['Content-Type' => 'application/json'],
+            'json' => [
                 "days" => $days,
                 "description" => $description,
                 "end_time" => $end_time,
-                "images" => $images,
+                // "images" => $images,
                 "name" => $nameEvent,
                 "start_time" => $start_time,
-                "state" => $state,
-                "update_date" => $update_date,
-                "url_image" => "storage/" . $path . $name,
-                "_id" => $_id_event,
-            );
-            json_encode($items);
+                "url_image" => $url_image,
+            ]
 
-            return view('eventos.edit')->with('response', $items);
+        ]);
 
-            // return redirect('eventosEdit' . $_id_event)->with('mainPhoto', "storage/" . $path . $name);
 
-            // return Response()->json([
-            //     "success" => true,
-            //     "file" => "array"
-            // ]);
+        $response_code = $r->getStatusCode();
+        $response = json_decode((string) $r->getBody(), true);
+
+        return redirect('eventos')->with('success', 'Evento modificado satisfactoriamente');
+    }
+
+    public function createImage(Request $request)
+    {
+        $_id = $request->input('id_evento');
+        $imagesString = $request->input('current_images');
+        $images = explode(",", $imagesString);
+        
+        if ($file = $request->file('newPhoto')) {
+            
+            $path = 'events/img/' . $_id . '/';
+            $name = time() . '_.' . $file->getClientOriginalExtension();
+            $file->storeAs($path, $name);
+            array_push($images, "storage/" . $path . $name);
+
+            $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/event/" . $_id;
+
+            $client = new Client();
+
+            $r = $client->request('PUT', $url, [
+                'headers' => ['Content-Type' => 'application/json'],
+                'json' => [
+                    'images' => $images
+                ]
+
+            ]);
+
+
+            $response_code = $r->getStatusCode();
+            $response = json_decode((string) $r->getBody(), true);
+
+            return redirect('eventos')->with('success', 'Evento modificado satisfactoriamente');
         }
     }
+
 
     public function create()
     {

@@ -22,11 +22,15 @@
                         </div>
                         @endif
                         <div class="col-8">
-                            <h3 class="mb-0">Eventos</h3>
+                            <h3 class="mb-0">Banners de eventos</h3>
                             <!-- <image src="{{asset('/storage/events/img/6203c745c525310a60478135/16444147900_.jpg')}}"> -->
                         </div>
-                        <div class="col-4 text-right">
-                            <a href="{{route('eventos.create')}}" class="btn btn-sm btn-primary">Agregar evento</a>
+                        <div class="col-4">
+                            <!-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">Agregar imagen</button> -->
+                            <form id="formAddPhotoBannerEvent" method="POST" action="{{ url('/create-image-bannerevent')}}" enctype="multipart/form-data">
+                                @csrf
+                                <input id="addPhotoBannerEvent" type="file" name="newPhoto"></input>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -91,7 +95,7 @@
                         <!-- <img src="{{ storage_path('app/events/img/6203c745c525310a60478135/16444147900_.jpg') }}" style="width: 100%; height: 100%;"> -->
                     </div>
 
-                    <form id="formAddPhoto" method="POST" action="{{ url('/create-image-bannerevent')}}" enctype="multipart/form-data">
+                    <form id="formAddPhoto" method="POST" action="{{ url('/create-image')}}" enctype="multipart/form-data">
                         @csrf
                         <input id="addPhoto" type="file" name="newPhoto">Agregar imagen</input>
                     </form>
@@ -112,7 +116,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/eventos/index.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/bannersevents/index.js') }}"></script>
 
 <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

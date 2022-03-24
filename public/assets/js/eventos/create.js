@@ -1,4 +1,4 @@
-let url = "http://3.16.246.24:3010/";
+let url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/";
 
 let images = [];
 
@@ -7,9 +7,9 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $("#btnSubmit").click(function(e) {
+    $("#btnSubmit").click(function (e) {
         let form = document.getElementById("frm");
 
         let nombre = document.getElementById("nameCreate").value;
@@ -19,7 +19,7 @@ $(document).ready(function() {
         let hora_final = document.getElementById("input_endtime").value;
         let archivos = document.getElementById("files").value;
 
-        $("input:checkbox[name=days]:checked").each(function() {
+        $("input:checkbox[name=days]:checked").each(function () {
             dias.push($(this)[0].id);
         });
 
@@ -57,15 +57,14 @@ $(document).ready(function() {
                 // images: "[images, asdasd]",
                 state: true
             },
-            success: function(msg) {
-                console.log("MSG", msg);
+            success: function (msg) {
                 // return alert('success', 'Evento creado exitosamente', "");
                 $("<input />").attr("type", "hidden").attr("name", "_id").attr("value", msg.result._id).appendTo(form);
                 $("<input />").attr("type", "hidden").attr("name", "date").attr("value", msg.result.creation_date).appendTo(form);
-                form.submit(function(e) {});
+                form.submit(function (e) { });
 
             },
-            error: function(error) {
+            error: function (error) {
                 return alert('error', 'Oops...', JSON.stringify(error));
             }
         });

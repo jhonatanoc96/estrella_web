@@ -1,4 +1,4 @@
-let url = "http://3.16.246.24:3010/";
+let url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/";
 
 $(document).ready(function() {
 
