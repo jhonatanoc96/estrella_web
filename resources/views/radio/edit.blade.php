@@ -111,12 +111,11 @@
                             <div style="width: 200px; display: block; margin-left: auto; margin-right: auto;">
                                 @if($response['new_url_image'] != "")
                                 <img src="{{asset($response['new_url_image'])}}" alt="" class="center">
-                                <input type="file" id="mainPhoto" name="mainPhoto" data-button="" accept="image/jpeg, image/png, image/gif,">
-                                <button type="button" id="closeMainPhoto" class="btn btn-danger my-4">{{ __('RESTABLECER FOTO') }}</button>
                                 @else
                                 <img src="{{asset($response['url_image'])}}" alt="" class="center">
-                                <input type="file" id="mainPhoto" name="mainPhoto" data-button="" accept="image/jpeg, image/png, image/gif,">
                                 @endif()
+                                <input type="file" id="mainPhoto" name="mainPhoto" data-button="" accept="image/jpeg, image/png, image/gif,">
+                                <button type="button" id="closeMainPhoto" class="btn btn-danger my-4">{{ __('RESTABLECER FOTO') }}</button>
                             </div>
 
                         </form>
@@ -149,5 +148,5 @@
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/eventos/edit.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/radio/edit.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>

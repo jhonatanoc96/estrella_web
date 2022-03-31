@@ -22,12 +22,11 @@
                         </div>
                         @endif
                         <div class="col-8">
-                            <h3 class="mb-0">Emisoras</h3>
+                            <h3 class="mb-0">Podcasts</h3>
                             <!-- <image src="{{asset('/storage/events/img/6203c745c525310a60478135/16444147900_.jpg')}}"> -->
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{route('radio.create')}}" class="btn btn-sm btn-primary">Agregar emisora</a>
-                            <!-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">Agregar emisora</button> -->
+                            <button data-toggle="modal" data-target="#exampleModalCreatePodcast" class="btn btn-sm btn-primary">Agregar podcast</button>
                         </div>
                     </div>
                 </div>
@@ -39,7 +38,6 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Imagen</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">URL</th>
                                 <th scope="col">Estado</th>
@@ -47,7 +45,7 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="records_table">
+                        <tbody id="records_table_podcast">
 
                         </tbody>
                     </table>
@@ -67,11 +65,11 @@
 
 
     <!-- MODALS -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCreatePodcast" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">EDITAR EMISORA</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">CREAR PODCAST</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -80,19 +78,53 @@
 
                     <div class="table-responsive">
 
-                        <form id="formMainPhoto" method="POST" action="{{ url('/store-main-photo')}}" enctype="multipart/form-data">
+                        <form>
                             @csrf
                             <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
-                            <input type="text" name="name" id="nameEditRadio" class="form-control" placeholder="{{ __('Nombre') }}" required autofocus>
+                            <input type="text" name="name" id="nameCreatePodcast" class="form-control" placeholder="{{ __('Nombre') }}" required autofocus>
                             <br>
                             <label class="form-control-label" for="url">{{ __('URL') }}</label>
-                            <input type="text" name="url" id="urlEditRadio" class="form-control" placeholder="{{ __('URL') }}" required autofocus>
+                            <input type="text" name="url" id="urlCreatePodcast" class="form-control" placeholder="{{ __('URL') }}" required autofocus>
                             <br>
 
                         </form>
 
                         <div class="text-center">
-                            <button id="guardarEditarEmisora" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
+                            <button id="guardarCrearPodcast" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal fade" id="exampleModalEditPodcast" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EDITAR PODCAST</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+
+                        <form>
+                            @csrf
+                            <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
+                            <input type="text" name="name" id="nameEditPodcast" class="form-control" placeholder="{{ __('Nombre') }}" required autofocus>
+                            <br>
+                            <label class="form-control-label" for="url">{{ __('URL') }}</label>
+                            <input type="text" name="url" id="urlEditPodcast" class="form-control" placeholder="{{ __('URL') }}" required autofocus>
+                            <br>
+
+                        </form>
+
+                        <div class="text-center">
+                            <button id="guardarEditarPodcast" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
                         </div>
                     </div>
                 </div>
@@ -108,7 +140,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/radio/index.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/podcast/index.js') }}"></script>
 
 <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

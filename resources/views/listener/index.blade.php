@@ -22,13 +22,10 @@
                         </div>
                         @endif
                         <div class="col-8">
-                            <h3 class="mb-0">Locutores</h3>
-                            <!-- <image src="{{asset('/storage/events/img/6203c745c525310a60478135/16444147900_.jpg')}}"> -->
+                            <h3 class="mb-0">Club de oyentes</h3>
                         </div>
-                        <div class="col-4 text-right">
-                            <a href="{{route('announcer.create')}}" class="btn btn-sm btn-primary">Agregar locutor</a>
-                            <!-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">Agregar emisora</button> -->
-                        </div>
+                        <!-- <div class="col-4 text-right">
+                        </div> -->
                     </div>
                 </div>
 
@@ -39,11 +36,13 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Imagen</th>
-                                <th scope="col">Audio</th>
-                                <th scope="col">Nombre completo</th>
-                                <th scope="col">Estado</th>
-                                <!-- <th scope="col">Fecha de creación</th> -->
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Barrio</th>
+                                <th scope="col">Correo electrónico</th>
+                                <th scope="col">Fecha de nacimiento</th>
+                                <th scope="col">Fecha de registro</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -64,35 +63,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- MODALS -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">CREAR LCOTUOR</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="table-responsive">
-
-                        <label class="form-control-label" for="emisora">{{ __('Emisora') }}</label>
-                        <input type="text" name="emisora" id="emisora" class="form-control" placeholder="{{ __('Emisora') }}" required autofocus>
-                        <br>
-
-                        <div class="text-center">
-                            <button id="guardarCreateEmisora" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 @include('layouts.footers.auth')
 @endsection
@@ -101,7 +71,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/announcer/index.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/listener/index.js') }}"></script>
 
 <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

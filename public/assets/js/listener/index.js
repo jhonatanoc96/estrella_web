@@ -10,19 +10,20 @@ $(document).ready(function () {
     //Obtener todos los usuarios
     $.ajax({
         method: "GET",
-        url: url + "api/radio",
+        url: url + "api/listener",
         success: function (msg) {
             console.log(msg);
             var html = '';
             var i;
             for (i = 0; i < [msg][0]["Message "].length; i++) {
                 html += '<tr>' +
-                    '<td><img style="height: 70px; width: auto;" src="http://estrella.test/' + [msg][0]["Message "][i]['url_image'] + '"</img><form id="formImgRadio' + [msg][0]["Message "][i]._id + '" method="POST" action="/store-img-radio" enctype="multipart/form-data"><input type="file" id="imgRadio' + [msg][0]["Message "][i]._id + '" name="imgRadio" class="imgRadio" data-button=""></form></td>' +
                     '<td>' + [msg][0]["Message "][i].name + '</td>' +
-                    '<td>' + [msg][0]["Message "][i].url + '</td>' +
-                    '<td><label class="switch"><input type="checkbox" class="check_state_radio" id="radio' + [msg][0]["Message "][i]._id + '"><span class="slider round"></span></label> </td>' +
+                    '<td>' + [msg][0]["Message "][i].lastname + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].tel + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].neighborhood + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].email + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].birth_date + '</td>' +
                     '<td>' + [msg][0]["Message "][i].creation_date + '</td>' +
-                    '<td><button style="background: none; border: none;" class="eliminar_imagen" id="radio' + [msg][0]["Message "][i]._id + '"><i class="fas fa-trash" style="color: gray; text-align: right;"></i></button><button style="background: none; border: none;" class="editar_radio" id="editradio' + [msg][0]["Message "][i]._id + '" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit" style="color: gray;"></i></button></td>' +
                     '</tr>';
 
                 if ([msg][0]["Message "][i].state) {

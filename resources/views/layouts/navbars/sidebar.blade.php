@@ -125,8 +125,26 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('radio.index') }}">
-                        <i class="fa fa-podcast" style="color: gray;"></i>
+                        <i class="fa fa-globe" style="color: gray;"></i>
                         <span class="nav-link-text" style="color: gray;">{{ __('Emisoras') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('contest.index') }}">
+                        <i class="fa fa-gift" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Concursos') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('listener.index') }}">
+                        <i class="fa fa-headphones" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Club de oyentes') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('podcast.index') }}">
+                        <i class="fa fa-podcast" style="color: gray;"></i>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Podcasts') }}</span>
                     </a>
                 </li>
 

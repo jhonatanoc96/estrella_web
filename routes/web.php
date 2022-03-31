@@ -27,12 +27,19 @@ Route::get('/session/{route}/{token}/{uid}/{name}/{lastname}/{email}/{phone_numb
 Route::get('/images', 'App\Http\Controllers\EventoController@images')->name('images');
 Route::post('/store-files', 'App\Http\Controllers\EventoController@storeImages')->name('store-files');
 Route::post('/store-file-radio', 'App\Http\Controllers\RadioController@storeImage')->name('store-files-radio');
-Route::post('/store-file-announcer', 'App\Http\Controllers\AnnouncerController@storeImage')->name('store-files-announcer');
+Route::post('/store-img-radio', 'App\Http\Controllers\RadioController@storeImageIndex')->name('store-files-radio');
+Route::post('/store-img-contest', 'App\Http\Controllers\ContestController@storeImageIndex')->name('store-files-radio');
 Route::post('/store-main-photo', 'App\Http\Controllers\EventoController@storeMainPhoto')->name('store-main-photo');
+Route::post('/store-main-photo-announcer', 'App\Http\Controllers\AnnouncerController@storeMainPhoto')->name('store-main-photo-announcer');
+Route::post('/store-audio-announcer', 'App\Http\Controllers\AnnouncerController@storeAudio')->name('store-audio-announcer');
+Route::post('/store-file-announcer', 'App\Http\Controllers\AnnouncerController@storeImage')->name('store-files-announcer');
+Route::post('/update-announcer', 'App\Http\Controllers\AnnouncerController@update')->name('update-announcer');
 Route::post('/update-event', 'App\Http\Controllers\EventoController@updateEvent')->name('update-event');
 Route::post('/create-image', 'App\Http\Controllers\EventoController@createImage')->name('create-image');
 Route::post('/create-image-bannerevent', 'App\Http\Controllers\BannersEventController@createImage')->name('create-image-bannerevent');
 Route::post('/create-image-bannerhome', 'App\Http\Controllers\BannersHomeController@createImage')->name('create-image-bannerhome');
+Route::post('/store-files-contest', 'App\Http\Controllers\ContestController@storeImagesContest')->name('store-files-contest');
+Route::post('/create-image-contest', 'App\Http\Controllers\ContestController@createImage')->name('create-image-contest');
 
 Route::group(['middleware' => 'mongo'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
@@ -42,12 +49,19 @@ Route::group(['middleware' => 'mongo'], function () {
 	Route::get('eventos', ['as' => 'eventos.index', 'uses' => 'App\Http\Controllers\EventoController@index']);
 	Route::get('eventosCreate', ['as' => 'eventos.create', 'uses' => 'App\Http\Controllers\EventoController@create']);
 	Route::get('eventosEdit/{id}', ['as' => 'eventos.edit', 'uses' => 'App\Http\Controllers\EventoController@edit']);
+	Route::get('contest', ['as' => 'contest.index', 'uses' => 'App\Http\Controllers\ContestController@index']);
+	Route::get('contestCreate', ['as' => 'contest.create', 'uses' => 'App\Http\Controllers\ContestController@create']);
+	Route::get('contestEdit/{id}', ['as' => 'contest.edit', 'uses' => 'App\Http\Controllers\ContestController@edit']);
 	Route::get('bannersEvent', ['as' => 'bannersevent.index', 'uses' => 'App\Http\Controllers\BannersEventController@index']);
 	Route::get('bannersHome', ['as' => 'bannershome.index', 'uses' => 'App\Http\Controllers\BannersHomeController@index']);
+	Route::get('listener', ['as' => 'listener.index', 'uses' => 'App\Http\Controllers\ListenerController@index']);
+	Route::get('podcast', ['as' => 'podcast.index', 'uses' => 'App\Http\Controllers\PodcastController@index']);
 	Route::get('radio', ['as' => 'radio.index', 'uses' => 'App\Http\Controllers\RadioController@index']);
 	Route::get('radioCreate', ['as' => 'radio.create', 'uses' => 'App\Http\Controllers\RadioController@create']);
+	Route::get('radioEdit/{id}', ['as' => 'radio.edit', 'uses' => 'App\Http\Controllers\RadioController@edit']);
 	Route::get('announcer', ['as' => 'announcer.index', 'uses' => 'App\Http\Controllers\AnnouncerController@index']);
 	Route::get('announcerCreate', ['as' => 'announcer.create', 'uses' => 'App\Http\Controllers\AnnouncerController@create']);
+	Route::get('announcerEdit/{id}', ['as' => 'announcer.edit', 'uses' => 'App\Http\Controllers\AnnouncerController@edit']);
 	Route::get('upgrade', function () {
 		return view('pages.upgrade');
 	})->name('upgrade');
