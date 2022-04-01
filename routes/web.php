@@ -27,8 +27,8 @@ Route::get('/session/{route}/{token}/{uid}/{name}/{lastname}/{email}/{phone_numb
 Route::get('/images', 'App\Http\Controllers\EventoController@images')->name('images');
 Route::post('/store-files', 'App\Http\Controllers\EventoController@storeImages')->name('store-files');
 Route::post('/store-file-radio', 'App\Http\Controllers\RadioController@storeImage')->name('store-files-radio');
-Route::post('/store-img-radio', 'App\Http\Controllers\RadioController@storeImageIndex')->name('store-files-radio');
-Route::post('/store-img-contest', 'App\Http\Controllers\ContestController@storeImageIndex')->name('store-files-radio');
+Route::post('/store-img-radio', 'App\Http\Controllers\RadioController@storeImageIndex')->name('store-img-radio');
+Route::post('/store-img-contest', 'App\Http\Controllers\ContestController@storeImageIndex')->name('store-img-contest');
 Route::post('/store-main-photo', 'App\Http\Controllers\EventoController@storeMainPhoto')->name('store-main-photo');
 Route::post('/store-main-photo-announcer', 'App\Http\Controllers\AnnouncerController@storeMainPhoto')->name('store-main-photo-announcer');
 Route::post('/store-audio-announcer', 'App\Http\Controllers\AnnouncerController@storeAudio')->name('store-audio-announcer');

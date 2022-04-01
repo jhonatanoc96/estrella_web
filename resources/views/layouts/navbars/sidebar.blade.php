@@ -105,16 +105,16 @@
                         <span class="nav-link-text" style="color: gray;">{{ __('Eventos') }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link active" href="{{ route('bannersevent.index') }}">
                         <i class="fa fa-cog" style="color: gray;"></i>
                         <span class="nav-link-text" style="color: gray;">{{ __('Banner de eventos') }}</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('bannershome.index') }}">
                         <i class="fa fa-home" style="color: gray;"></i>
-                        <span class="nav-link-text" style="color: gray;">{{ __('Banner de inicio') }}</span>
+                        <span class="nav-link-text" style="color: gray;">{{ __('Publicidad') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -22,7 +22,7 @@
                         </div>
                         @endif
                         <div class="col-8">
-                            <h3 class="mb-0">Banners de inicio</h3>
+                            <h3 class="mb-0">Publicidad</h3>
                             <!-- <image src="{{asset('/storage/events/img/6203c745c525310a60478135/16444147900_.jpg')}}"> -->
                         </div>
                         <div class="col-4">
@@ -42,8 +42,8 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripción</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">URL</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Fecha de creación</th>
                                 <th scope="col"></th>
@@ -108,20 +108,47 @@
         </div>
     </div>
 
-</div>
-@include('layouts.footers.auth')
-@endsection
+    <!-- MODALS -->
+    <div class="modal fade" id="exampleModalUrl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">URL de la publicidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-<!-- Argon JS -->
+                    <form>
+                        @csrf
+                        <label class="form-control-label" for="url">{{ __('URL') }}</label>
+                        <input type="text" name="url" id="urlPublicidad" class="form-control" placeholder="{{ __('URL') }}" required autofocus>
+                        <br>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/bannershome/index.js') }}"></script>
+                    </form>
 
-<script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                    <div class="text-center">
+                        <button id="guardarEditarPublicidad" class="btn btn-success my-4">{{ __('GUARDAR') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-@stack('js')
+    </div>
+    @include('layouts.footers.auth')
+    @endsection
 
-<!-- Argon JS -->
-<script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+    <!-- Argon JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bannershome/index.js') }}"></script>
+
+    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @stack('js')
+
+    <!-- Argon JS -->
+    <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
