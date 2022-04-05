@@ -135,6 +135,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button id="exportContestExcel" type="button" class="btn btn-success"><i class="fa fa-file-excel" aria-hidden="true"></i>   EXCEL</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ListenerController;
+use App\Http\Controllers\ContestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +43,10 @@ Route::post('/create-image-bannerevent', 'App\Http\Controllers\BannersEventContr
 Route::post('/create-image-bannerhome', 'App\Http\Controllers\BannersHomeController@createImage')->name('create-image-bannerhome');
 Route::post('/store-files-contest', 'App\Http\Controllers\ContestController@storeImagesContest')->name('store-files-contest');
 Route::post('/create-image-contest', 'App\Http\Controllers\ContestController@createImage')->name('create-image-contest');
+Route::post('/store-podcast', 'App\Http\Controllers\PodcastController@storeAudio')->name('store-podcast');
+
+Route::get('/generate-excel-listeners', 'App\Http\Controllers\ListenerController@export')->name('generate-excel-listeners');
+Route::get('/generate-excel-contests/{id}', 'App\Http\Controllers\ContestController@export')->name('generate-excel-contests');
 
 Route::group(['middleware' => 'mongo'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);

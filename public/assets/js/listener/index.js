@@ -20,8 +20,12 @@ $(document).ready(function () {
                     '<td>' + [msg][0]["Message "][i].name + '</td>' +
                     '<td>' + [msg][0]["Message "][i].lastname + '</td>' +
                     '<td>' + [msg][0]["Message "][i].tel + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].country + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].department + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].city + '</td>' +
                     '<td>' + [msg][0]["Message "][i].neighborhood + '</td>' +
                     '<td>' + [msg][0]["Message "][i].email + '</td>' +
+                    '<td>' + [msg][0]["Message "][i].occupation + '</td>' +
                     '<td>' + [msg][0]["Message "][i].birth_date + '</td>' +
                     '<td>' + [msg][0]["Message "][i].creation_date + '</td>' +
                     '</tr>';

@@ -133,6 +133,10 @@
     </div>
 
 </div>
+
+<form id="frmPodcast" method="POST" class="needs-validation" novalidate="" action="{{ url('/store-podcast')}}">
+
+</form>
 @include('layouts.footers.auth')
 @endsection
 

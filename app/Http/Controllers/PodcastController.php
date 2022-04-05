@@ -28,6 +28,36 @@ class PodcastController extends Controller
         return view('podcast.create');
     }
 
+    public function storeAudio(Request $request)
+    {
+        $_id = $request->input('_id');
+        $url = $request->input('url');
+
+        $filename = 'audio.mp3';
+        $tempImage = '../storage/app/podcasts/' . $_id . '/' . $filename;
+
+        if (!File::makeDirectory('../storage/app/podcasts/' . $_id, 0777, true));
+
+        copy($url, $tempImage);
+
+        $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/podcast/" . $_id;
+
+        $client = new Client();
+
+        $r = $client->request('PUT', $url, [
+            'headers' => ['Content-Type' => 'application/json'],
+            'json' => [
+                'path_audio' => 'storage/app/podcasts/' . $_id . '/' . $filename
+            ]
+
+        ]);
+
+        $response_code = $r->getStatusCode();
+        $response = json_decode((string) $r->getBody(), true);
+
+        return view('podcast.index');
+    }
+
     public function edit($id, Request $request)
     {
         $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/radio/" . $id;

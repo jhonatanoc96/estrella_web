@@ -24,8 +24,9 @@
                         <div class="col-8">
                             <h3 class="mb-0">Club de oyentes</h3>
                         </div>
-                        <!-- <div class="col-4 text-right">
-                        </div> -->
+                        <div class="col-4 text-right">
+                            <a href="{{route('generate-excel-listeners')}}" class="btn btn-sm btn-success"><i class="fa fa-file-excel" aria-hidden="true"></i>   EXCEL</a>
+                        </div>
                     </div>
                 </div>
 
@@ -39,8 +40,12 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Teléfono</th>
+                                <th scope="col">País</th>
+                                <th scope="col">Departamento</th>
+                                <th scope="col">Ciudad</th>
                                 <th scope="col">Barrio</th>
                                 <th scope="col">Correo electrónico</th>
+                                <th scope="col">Ocupación</th>
                                 <th scope="col">Fecha de nacimiento</th>
                                 <th scope="col">Fecha de registro</th>
                                 <th scope="col"></th>

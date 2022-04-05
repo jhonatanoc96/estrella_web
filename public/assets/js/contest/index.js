@@ -1,6 +1,7 @@
 let url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/";
 let _id_contest_add_photo = "";
 let idContestSelectedToEdit = "";
+let id_contest_selected = "";
 let current_images = [];
 
 $(document).ready(function () {
@@ -92,7 +93,6 @@ $(document).ready(function () {
         formAddPhotoContest.submit(function (e) { });
     });
 
-
     //Editar emisora
     $("#guardarEditarConcurso").click(function () {
 
@@ -119,6 +119,11 @@ $(document).ready(function () {
                 return alert('error', 'Oops...', JSON.stringify(error));
             }
         });
+    });
+
+
+    $("#exportContestExcel").click(function () {
+        window.location = "/generate-excel-contests/" + id_contest_selected;
     });
 
 
@@ -250,11 +255,11 @@ function editImages(row) {
 
 function viewCompetitors(row) {
 
-    let id = row.id.replace("viewCompetitors", "");
+    id_contest_selected = row.id.replace("viewCompetitors", "");
 
     $.ajax({
         method: "GET",
-        url: url + "api/contest/" + id,
+        url: url + "api/contest/" + id_contest_selected,
         success: function (msg) {
 
             var html = '';

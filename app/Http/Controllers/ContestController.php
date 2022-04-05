@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 use Validator, Redirect, Response, File;
+use App\Exports\ContestExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ContestController extends Controller
 {
@@ -281,5 +284,30 @@ class ContestController extends Controller
 
             return redirect('contest')->with('success', 'Concurso modificado satisfactoriamente');
         }
+    }
+
+
+    public function export($id)
+    {
+        $url = "http://ec2-3-145-159-204.us-east-2.compute.amazonaws.com:3010/api/contest/" . $id;
+
+        $client = new Client();
+
+        $r = $client->request('GET', $url, [
+            'headers' => ['Content-Type' => 'application/json']
+            // 'json' => [
+            //     'email' => $request['email'],
+            //     'password' => $request['password']
+            // ]
+
+        ]);
+
+
+        $response_code = $r->getStatusCode();
+        $response = json_decode((string) $r->getBody(), true);
+
+        $export = new ContestExport($response['Message ']["competitor"]);
+
+        return Excel::download($export, 'participantes.xlsx');
     }
 }

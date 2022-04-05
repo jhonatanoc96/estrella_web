@@ -6,6 +6,7 @@ let idPodcastSelectedToEdit = "";
 
 $(document).ready(function () {
     var radios_true = [];
+    let form = document.getElementById("frmPodcast");
 
     //Obtener todos los usuarios
     $.ajax({
@@ -21,7 +22,8 @@ $(document).ready(function () {
                     '<td>' + [msg][0]["Message "][i].url_audio + '</td>' +
                     '<td><label class="switch"><input type="checkbox" class="check_state_podcast" id="podcast' + [msg][0]["Message "][i]._id + '"><span class="slider round"></span></label> </td>' +
                     '<td>' + [msg][0]["Message "][i].creation_date + '</td>' +
-                    '<td><button style="background: none; border: none;" class="eliminar_podcast" id="podcast' + [msg][0]["Message "][i]._id + '"><i class="fas fa-trash" style="color: gray; text-align: right;"></i></button><button style="background: none; border: none;" class="editar_podcast" id="editpodcast' + [msg][0]["Message "][i]._id + '" data-toggle="modal" data-target="#exampleModalEditPodcast"><i class="fas fa-edit" style="color: gray;"></i></button></td>' +
+                    '<td><button style="background: none; border: none;" class="eliminar_podcast" id="podcast' + [msg][0]["Message "][i]._id + '"><i class="fas fa-trash" style="color: gray; text-align: right;"></i></button></td>' +
+                    // '<td><button style="background: none; border: none;" class="eliminar_podcast" id="podcast' + [msg][0]["Message "][i]._id + '"><i class="fas fa-trash" style="color: gray; text-align: right;"></i></button><button style="background: none; border: none;" class="editar_podcast" id="editpodcast' + [msg][0]["Message "][i]._id + '" data-toggle="modal" data-target="#exampleModalEditPodcast"><i class="fas fa-edit" style="color: gray;"></i></button></td>' +
                     '</tr>';
 
                 if ([msg][0]["Message "][i].state) {
@@ -65,7 +67,7 @@ $(document).ready(function () {
     });
 
     //Crear emisora
-    $("#guardarCrearPodcast").click(function () {
+    $("#guardarCrearPodcast").click(async function () {
         let nombre = document.getElementById("nameCreatePodcast").value;
         let urlPodcast = document.getElementById("urlCreatePodcast").value;
 
@@ -74,6 +76,7 @@ $(document).ready(function () {
 
         if (!urlPodcast)
             return alert('error', 'Oops...', 'La URL es obligatori1.');
+
 
         $.ajax({
             method: "POST",
@@ -84,8 +87,29 @@ $(document).ready(function () {
                 state: true
             },
             success: function (msg) {
-                console.log("MSG", msg);
-                location.reload();
+                let xml = msg["Message "]['xml'];
+
+                let parser = new DOMParser();
+                let xmlDoc;
+                let node = null;
+
+                xmlDoc = parser.parseFromString(xml, "text/xml");
+
+                let url_audio_item = xmlDoc.evaluate('//channel/item/enclosure/@url', xmlDoc, null, XPathResult.ANY_TYPE, null);
+                let url_audio = "";
+
+                while (node = url_audio_item.iterateNext()) {
+                    url_audio = node.textContent;
+                }
+
+                console.log("url_audio ", url_audio);
+                $("<input />").attr("type", "hidden").attr("name", "_id").attr("value", msg["Message "]._id).appendTo(form);
+                $("<input />").attr("type", "hidden").attr("name", "url").attr("value", url_audio).appendTo(form);
+                form.submit(function (e) { });
+
+                //https://www.ivoox.com/podcast-estrella-celeste_fg_f11472192_filtro_1.xml
+
+                // location.reload();
                 return alert('success', 'Podcast creado exitosamente', "");
             },
             error: function (error) {
@@ -184,7 +208,7 @@ function deletePodcast(row) {
         method: "DELETE",
         url: url + "api/podcast/" + id,
         success: function (msg) {
-            location.reload();
+            window.location = "/podcast";
             return alert('success', 'Podcast eliminado exitosamente', "");
         },
         error: function (error) {

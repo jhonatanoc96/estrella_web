@@ -211,7 +211,6 @@ class AnnouncerController extends Controller
                 "name" => $name,
                 "last_name" => $lastname,
                 "url_image" => $url_image,
-                "url_audio" => $url_audio,
             ]
 
         ]);
