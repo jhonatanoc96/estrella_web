@@ -47,7 +47,7 @@ class PodcastController extends Controller
         $r = $client->request('PUT', $url, [
             'headers' => ['Content-Type' => 'application/json'],
             'json' => [
-                'path_audio' => 'storage/app/podcasts/' . $_id . '/' . $filename
+                'path_audio' => 'storage/podcasts/' . $_id . '/' . $filename
             ]
 
         ]);

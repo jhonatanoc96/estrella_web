@@ -79,23 +79,33 @@ $(document).ready(function () {
     });
 
     //Crear emisora
-    $("#guardarCreateEmisora").click(function () {
-        let emisora = document.getElementById("emisora").value;
+    $("#enviarNotificacion").click(function () {
+        let title = document.getElementById("titleNotification").value;
+        let description = document.getElementById("descriptionNotification").value;
 
-        if (!emisora)
-            return alert('error', 'Oops...', 'La emisora es obligatoria.');
+        if (!title)
+            return alert('error', 'Oops...', 'El título es obligatorio.');
+
+        if (!description)
+            return alert('error', 'Oops...', 'La descripción es obligatoria.');
 
         $.ajax({
             method: "POST",
-            url: url + "api/create-radio",
+            url: "https://onesignal.com/api/v1/notifications",
+            headers: {
+                Authorization: 'Bearer Mjc3MDhkZDUtNGQzNS00NzRjLWEzOGEtYWYxY2FhOWExNGI4'
+            },
             data: {
-                url: emisora,
-                state: true
+                app_id: "8d023c5f-8bdd-4755-b5ba-62f174adab7b",
+                included_segments: ["Active Users"],
+                headings: { "en": title },
+                contents: { "en": description },
+                data: { "task": "OK" }
             },
             success: function (msg) {
                 console.log("MSG", msg);
                 location.reload();
-                return alert('success', 'Evento creado exitosamente', "");
+                return alert('success', "Notificación enviada", 'La notificación ha sido enviada exitosamente a ' + msg["recipients"] + " dispositivo(s).");
             },
             error: function (error) {
                 return alert('error', 'Oops...', JSON.stringify(error));
