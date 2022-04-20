@@ -23,7 +23,6 @@ $(document).ready(function () {
                     '<td>' + [msg][0]["Message "][i].country + '</td>' +
                     '<td>' + [msg][0]["Message "][i].department + '</td>' +
                     '<td>' + [msg][0]["Message "][i].city + '</td>' +
-                    '<td>' + [msg][0]["Message "][i].neighborhood + '</td>' +
                     '<td>' + [msg][0]["Message "][i].email + '</td>' +
                     '<td>' + [msg][0]["Message "][i].occupation + '</td>' +
                     '<td>' + [msg][0]["Message "][i].birth_date + '</td>' +

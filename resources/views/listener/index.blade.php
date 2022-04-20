@@ -44,7 +44,6 @@
                                 <th scope="col">País</th>
                                 <th scope="col">Departamento</th>
                                 <th scope="col">Ciudad</th>
-                                <th scope="col">Barrio</th>
                                 <th scope="col">Correo electrónico</th>
                                 <th scope="col">Ocupación</th>
                                 <th scope="col">Fecha de nacimiento</th>

@@ -123,9 +123,14 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Teléfono</th>
+                                    <th scope="col">País</th>
+                                    <th scope="col">Departamento</th>
+                                    <th scope="col">Ciudad</th>
                                     <th scope="col">Correo electrónico</th>
-                                    <th scope="col">Barrio</th>
+                                    <th scope="col">Ocupación</th>
                                     <th scope="col">Fecha de nacimiento</th>
+                                    <th scope="col">Fecha de registro</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody id="records_images_table_contest_competitors">

@@ -273,6 +273,21 @@ function viewCompetitors(row) {
                     '<td>' + [msg][0]["Message "]['competitor'][i].neighborhood + '</td>' +
                     '<td>' + [msg][0]["Message "]['competitor'][i].birth_date + '</td>' +
                     '</tr>';
+
+
+                html += '<tr>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].name + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].lastname + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].tel + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].country + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].department + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].city + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].neighborhood + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].email + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].occupation + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].birth_date + '</td>' +
+                    '<td>' + [msg][0]["Message "]['competitor'][i].creation_date + '</td>' +
+                    '</tr>';
             }
             $('#records_images_table_contest_competitors').html(html);
 
